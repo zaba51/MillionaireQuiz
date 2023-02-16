@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import {Wrapper} from 'containers/ProgressBar/ProgressBar.styles'
 import Price from 'components/Price/Price'
 import { useAppSelector } from "store/hooks"
-import { selectCurrentQuestion } from "components/Quiz/QuizSlice"
+import { selectCurrentQuestion } from "features/currentQuestion/QuizSlice"
 
 export type Tprice = {
     id: number

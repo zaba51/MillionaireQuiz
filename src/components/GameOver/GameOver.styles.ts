@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const StyledTitle = styled.h2`
     font-size: 50px;
     color:white;
+    font-style: italic;
 `
 
 export const StyledLabel = styled.p`

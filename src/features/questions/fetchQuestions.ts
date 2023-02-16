@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { Tquestions } from 'components/Quiz/Quiz';
+import { Tquestions } from 'features/questions/AppSlice';
 
 export const fetchQuestions = async (url: string):Promise<Tquestions[]> => {
     // try {

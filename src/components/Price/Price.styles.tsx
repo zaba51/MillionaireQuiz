@@ -14,6 +14,6 @@ export const Wrapper = styled.div<{isCurrent:boolean}>`
     font-size:20px;
 
     &:first-child, :nth-child(12), :nth-child(5) {
-        color: ${({theme, isCurrent}) => isCurrent ? 'black' : "white"};
+        color: white;
     }
 `

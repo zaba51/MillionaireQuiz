@@ -1,13 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import QuizSlice from 'components/Quiz/QuizSlice';
+import QuizSlice from 'features/currentQuestion/QuizSlice';
 import questionsSlice from 'features/questions/AppSlice';
 import gameSlice from 'features/game/gameSlice';
+import lifelinesSlice from 'features/lifelines/lifelinesSlice';
 
 export const store = configureStore({
   reducer: {
     questions: questionsSlice,
     currentQuestion: QuizSlice,
-    game: gameSlice 
+    game: gameSlice,
+    lifelines: lifelinesSlice
   },
 });
 

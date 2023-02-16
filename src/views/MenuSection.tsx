@@ -10,7 +10,7 @@ const MenuSection = () => {
         <Wrapper>
             <MenuWrapper>
                 <StyledTitle>WHO WANTS TO BE A MILLIONARE</StyledTitle>
-                <StyledButton onClick={startNewGame}>NEW GAME</StyledButton>
+                <StyledButton onClick={startNewGame}>PLAY</StyledButton>
                 <StyledButton>INFO</StyledButton>
             </MenuWrapper>
         </Wrapper>

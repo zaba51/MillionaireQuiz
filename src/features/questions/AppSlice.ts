@@ -1,7 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from 'store/store';
 import { fetchQuestions } from 'features/questions/fetchQuestions';
-import { Tquestions } from 'components/Quiz/Quiz'
+
+export type Tquestions = {
+  category: string
+  type: string
+  difficulty: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+}
 
 const initialQuestionsState: Tquestions[] = [
     {

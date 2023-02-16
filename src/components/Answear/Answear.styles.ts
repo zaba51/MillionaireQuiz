@@ -64,7 +64,7 @@ export const Wrapper = styled.div<{state?:string}>`
     align-items: center;
     padding:20px;
     cursor:pointer;
-    /* ${({state})=>state==="CORRECT" ? animation(state) : null }; */
+    ${({state})=>state==="HIDDEN" ? 'visibility:hidden' : null };
     position: relative;
     z-index: 1;
 
@@ -81,4 +81,10 @@ export const Wrapper = styled.div<{state?:string}>`
         ${({state})=>state==="CORRECT" ? flashAnimation : null };
         z-index:2;
     }
+`
+
+export const Label = styled.span`
+    color: orange;
+    margin-right: 10px;
+    z-index: 3;
 `

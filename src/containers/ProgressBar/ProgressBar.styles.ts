@@ -6,5 +6,4 @@ export const Wrapper = styled.div`
     align-items: center;
     background-color: #032495;
     border-left: 10px solid cyan;
-    overflow-y:scroll;
 `

@@ -5,8 +5,8 @@ import { decode } from 'html-entities';
 import { RootState } from 'store/store';
 import { fetchQuestionsThunk, selectQuestions } from 'features/questions/AppSlice'
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { selectCurrentQuestion } from './QuizSlice';
-import { increment } from './QuizSlice';
+import { selectCurrentQuestion } from '../../features/currentQuestion/QuizSlice';
+import { increment } from '../../features/currentQuestion/QuizSlice';
 import Answear from 'components/Answear/Answear';
 import QuestionHeader from 'components/QuestionHeader/QuestionHeader';
 import { freezeClickEvents } from 'helpers/freezeClickEvents';
@@ -15,16 +15,15 @@ import { delay } from 'helpers/delay';
 import { gameOver, setGuarrantedWin } from 'features/game/gameSlice';
 import {prizes} from 'containers/ProgressBar/ProgressBar'
 
-export type Tquestions = {
-    category: string
-    type: string
-    difficulty: string
-    question: string
-    correct_answer: string
-    incorrect_answers: string[]
+const answearLabels: string[] = ["A", "B", "C", "D"]
+
+type TinitialButtonState = {
+    id: number
+    label: string
+    state: "IDLE" | "CLICKED" | "CORRECT" | "HIDDEN"
 }
 
-const initialButtonState = [
+const initialButtonsState = [
     {
         id: 0,
         label: "A",
@@ -47,52 +46,40 @@ const initialButtonState = [
     }
 ]
 
-const Quiz: FC = () => {
-    const questions = useAppSelector(selectQuestions)
-    const currentQuestion = useAppSelector(selectCurrentQuestion)
+type Tprops = {
+    questionText: string
+    answears: string[]
+    currentQuestion: number
+    correctAnswearIndex: number
+}
+
+const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswearIndex}) => {
     const dispatch = useAppDispatch()
-    const [buttons, setButtons] = useState(initialButtonState)
+    const [buttons, setButtons] = useState(initialButtonsState)
     const { shouldFreeze, toggleFreeze } = useFreeze();
+    const [fiftyState, phoneState, peopleState] = useAppSelector(state => state.lifelines)
 
     // useEffect(() => {
     //     if (!questions[1]) dispatch(fetchQuestionsThunk("https://opentdb.com/api.php?amount=12&type=multiple"))
     // }, [])
 
     useEffect(() => {
-        setButtons(initialButtonState)
+        setButtons(initialButtonsState)
         toggleFreeze(false)
 
-        if (currentQuestion == 8 || currentQuestion == 1) {
+        if (currentQuestion === 8 || currentQuestion === 1) {
             dispatch(setGuarrantedWin(prizes[prizes.length-currentQuestion].value))
         }
-    }, [currentQuestion, questions])
-
-    const answears = useMemo(() => {
-        if (!questions[1]) return [];
-
-        return [
-            ...questions[currentQuestion].incorrect_answers,
-            questions[currentQuestion].correct_answer
-        ].sort(() => Math.random() - 0.5)
-
-    }, [currentQuestion, questions]);
-
-
-    const checkAnswear = (answear: string): boolean => {
-        if (answear === questions[currentQuestion].correct_answer) return true
-        return false
-    }
-
-    const findCorrectIndex = (): number => {
-        return answears.indexOf(
-            answears.find((answear) => checkAnswear(answear)) || ""
-        )
-    }
+    }, [currentQuestion, answears])
+    
+    useEffect(()=> {
+        if (fiftyState.state === "USED") hideFiftyFifty()
+    },[fiftyState])
 
     const handleCorrect = async (index: number): Promise<void> => {
-        if (currentQuestion === questions.length - 1) {
-            //TODO handleWin
-            alert("Win")
+        if (currentQuestion === prizes.length - 1 ) {
+            dispatch(setGuarrantedWin(prizes[0].value))
+            dispatch(gameOver())
             return
         }
         dispatch(increment())
@@ -113,8 +100,20 @@ const Quiz: FC = () => {
         })
     }
 
+    const hideFiftyFifty = () => {
+        const indexesWithoutCorrect:number[] =
+            buttons
+                .filter(({id}) => id !== correctAnswearIndex)
+                .map(({id}) => id)
+
+        const [, ...idexesToHide] = indexesWithoutCorrect.sort(() => Math.random() - 0.5)
+        idexesToHide.forEach((id) => {
+            toggleButton(id, "HIDDEN")
+        })
+    }
+
     const onClickHandler = async (index: number) => {
-        if (!questions[1]) return;
+        if (!questionText) return;
 
         toggleFreeze(true)
 
@@ -122,12 +121,11 @@ const Quiz: FC = () => {
 
         await delay(3000)
 
-        const correctAnswearIndex = findCorrectIndex();
         toggleButton(correctAnswearIndex, "CORRECT")
 
         await delay(5000)
 
-        if (checkAnswear(answears[index]) === true) {
+        if (index === correctAnswearIndex) {
             handleCorrect(index);
         }
         else {
@@ -135,12 +133,10 @@ const Quiz: FC = () => {
         }
     }
 
-    console.log(questions[currentQuestion])
-
     return (
         <QuizContainer>
             <Wrapper shouldFreeze={shouldFreeze}>
-                <QuestionHeader text={questions[currentQuestion]?.question} />
+                <QuestionHeader text={questionText} />
                 {
                     buttons.map((button, index) => (
                         <Answear
@@ -148,6 +144,7 @@ const Quiz: FC = () => {
                             text={answears[index]}
                             onClick={() => onClickHandler(index)}
                             state={button.state}
+                            label={answearLabels[index]}
                         />
                     ))
                 }

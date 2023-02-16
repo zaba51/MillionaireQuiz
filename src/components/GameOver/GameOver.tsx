@@ -5,13 +5,18 @@ import { useAppSelector } from 'store/hooks';
 import { selectGuaranteedWin } from 'features/game/gameSlice'
 import { currency } from 'global';
 
-const GameOver: FC = () => {
-    const {startNewGame, navigateMenu} = useAppNavigate();
-    const guaranteedWin = useAppSelector(selectGuaranteedWin)
+type TGameOver = {
+    title: string
+    guaranteedWin: string
+    startNewGame: () => void
+    navigateMenu: () => void
+}
+
+const GameOver: FC<TGameOver> = ({title, guaranteedWin, startNewGame, navigateMenu}) => {
 
     return (
     <Wrapper>
-        <StyledTitle>Game Over</StyledTitle>
+        <StyledTitle>{title}</StyledTitle>
         <StyledLabel>You won:</StyledLabel>
         <StyledPrize>{guaranteedWin} {currency}</StyledPrize>
         <StyledButton onClick={startNewGame}>PLAY AGAIN</StyledButton>
