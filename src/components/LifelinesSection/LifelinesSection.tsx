@@ -9,7 +9,7 @@ import { useFreeze } from 'hooks/useFreeze'
 const Lifelines: FC = () => {
   const lifelineState = useAppSelector(state => state.lifelines);
   const [fiftyState, phoneState, peopleState] = lifelineState
-  const { shouldFreeze, toggleFreeze } = useFreeze();
+  const { shouldLifelinesFreeze, toggleFreeze } = useFreeze();
   const dispatch = useAppDispatch()
 
   const handleClick = (state:string) => {
@@ -17,14 +17,14 @@ const Lifelines: FC = () => {
   }
 
   return (
-    <Wrapper shouldFreeze={shouldFreeze}>
-        <Lifeline state={phoneState.state} onClick={() => handleClick(phoneState.type)} disabled={phoneState.state=="USED"}>
+    <Wrapper shouldFreeze={shouldLifelinesFreeze}>
+        <Lifeline state={phoneState.state} onClick={() => handleClick(phoneState.type)} disabled={phoneState.state==="USED"}>
             <FontAwesomeIcon icon={faPhoneFlip} />
         </Lifeline>
-        <Lifeline state={peopleState.state} onClick={() => handleClick(peopleState.type)} disabled={peopleState.state=="USED"}>
+        <Lifeline state={peopleState.state} onClick={() => handleClick(peopleState.type)} disabled={peopleState.state==="USED"}>
             <FontAwesomeIcon icon={faPeopleGroup} />
         </Lifeline>
-        <Lifeline state={fiftyState.state} onClick={() => handleClick(fiftyState.type)} disabled={fiftyState.state=="USED"}>
+        <Lifeline state={fiftyState.state} onClick={() => handleClick(fiftyState.type)} disabled={fiftyState.state==="USED"}>
             <span>50:50</span>
         </Lifeline>
     </Wrapper>

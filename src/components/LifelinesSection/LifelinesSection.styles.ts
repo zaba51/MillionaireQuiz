@@ -1,12 +1,14 @@
 import styled, {css} from "styled-components";
 import { Wrapper as ProgressBarWrapper } from "containers/ProgressBar/ProgressBar.styles";
 
-export const Wrapper = styled(ProgressBarWrapper)<{shouldFreeze:Boolean}>`
-    grid-column: -1 / 2;
+export const Wrapper = styled.div<{shouldFreeze:Boolean}>`
+    display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-evenly;
     pointer-events: ${({shouldFreeze}) => shouldFreeze ? 'none' : 'auto'};
-
+    width:100%;
+    height: 60px;
 `
 
 export const Lifeline = styled.button<{state?:string}>`
@@ -14,7 +16,7 @@ export const Lifeline = styled.button<{state?:string}>`
     height:35px;
     border-radius: 50%;
     border: 2px solid cyan;
-    background: radial-gradient(closest-side at center,#0e34aa,#032495,#00000060);
+    background: radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b);
     color: white;
     display: flex;
     align-items: center;

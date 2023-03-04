@@ -1,16 +1,10 @@
-import { FC, useEffect, useState, useMemo, useContext } from 'react'
-import axios from 'axios'
+import { FC, useEffect, useState } from 'react'
 import { Wrapper, QuizContainer } from 'components/Quiz/Quiz.styles'
-import { decode } from 'html-entities';
-import { RootState } from 'store/store';
-import { fetchQuestionsThunk, selectQuestions } from 'features/questions/AppSlice'
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { selectCurrentQuestion } from '../../features/currentQuestion/QuizSlice';
 import { increment } from '../../features/currentQuestion/QuizSlice';
 import Answear from 'components/Answear/Answear';
 import QuestionHeader from 'components/QuestionHeader/QuestionHeader';
-import { freezeClickEvents } from 'helpers/freezeClickEvents';
-import { FreezeContext, useFreeze } from 'hooks/useFreeze'
+import { useFreeze } from 'hooks/useFreeze'
 import { delay } from 'helpers/delay';
 import { gameOver, setGuarrantedWin } from 'features/game/gameSlice';
 import {prizes} from 'containers/ProgressBar/ProgressBar'
@@ -51,9 +45,10 @@ type Tprops = {
     answears: string[]
     currentQuestion: number
     correctAnswearIndex: number
+    changeAnswearLabels: (indexesToHide: number[]) => void
 }
 
-const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswearIndex}) => {
+const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswearIndex, changeAnswearLabels}) => {
     const dispatch = useAppDispatch()
     const [buttons, setButtons] = useState(initialButtonsState)
     const { shouldFreeze, toggleFreeze } = useFreeze();
@@ -110,6 +105,8 @@ const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswe
         idexesToHide.forEach((id) => {
             toggleButton(id, "HIDDEN")
         })
+
+        changeAnswearLabels(idexesToHide)
     }
 
     const onClickHandler = async (index: number) => {

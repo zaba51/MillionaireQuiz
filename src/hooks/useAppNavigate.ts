@@ -21,10 +21,16 @@ export const useAppNavigate = () => {
 
     const navigateMenu = () => {
         navigate('/menu')
+        console.log("Switched to Menu")
+    }
+
+    const navigateInfo= () => {
+        navigate('/info')
     }
 
     return {
         startNewGame,
-        navigateMenu
+        navigateMenu,
+        navigateInfo
     }
 }

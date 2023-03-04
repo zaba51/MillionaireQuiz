@@ -3,8 +3,7 @@ import Quiz from 'components/Quiz/Quiz'
 import { Wrapper } from 'containers/QuizSection/QuizSection.styles'
 import Modal from 'components/Modal/Modal';
 import { useModal } from 'hooks/useModal';
-import { selectGameState, startMenu, startGame, gameOver, setGuarrantedWin } from 'features/game/gameSlice'
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 import GameOver from 'components/GameOver/GameOver';
 import { useAppNavigate } from 'hooks/useAppNavigate';
 import { selectGuaranteedWin } from 'features/game/gameSlice'
@@ -12,16 +11,18 @@ import { prizes } from 'containers/ProgressBar/ProgressBar'
 import PhoneWidget from 'components/PhoneWidget/PhoneWidget';
 import { selectQuestions } from 'features/questions/AppSlice';
 import { selectCurrentQuestion } from 'features/currentQuestion/QuizSlice';
+import AudienceWidget from 'components/AudienceWidget/AudienceWidget';
 
 const QuizSection: FC = () => {
-    const { isOpen, handleOpenModal, handleCloseModal } = useModal();
+    const { isOpen } = useModal();
     const { startNewGame, navigateMenu } = useAppNavigate();
     const guaranteedWin = useAppSelector(selectGuaranteedWin)
     const [correctAnswearIndex, setCorrectAnswearIndex] = useState<number>(-1)
     const title = (guaranteedWin === prizes[0].value) ? "Congratulations!" : "Game over"
     const questions = useAppSelector(selectQuestions)
     const currentQuestion = useAppSelector(selectCurrentQuestion)
-    const [fiftyState, phoneState, peopleState] = useAppSelector(state => state.lifelines)
+    const [, phoneState, peopleState] = useAppSelector(state => state.lifelines)
+    const [answearLabels, setAnswearLabels] = useState<string[]>(["A", "B", "C", "D"])
 
     const answears = useMemo(() => {
         if (!questions[1]) return [];
@@ -35,7 +36,7 @@ const QuizSection: FC = () => {
 
     useEffect(() => {
         setCorrectAnswearIndex(findCorrectIndex())
-    },[currentQuestion, questions])
+    }, [currentQuestion, questions])
 
     const checkAnswear = (answear: string): boolean => {
         if (answear === questions[currentQuestion].correct_answer) return true
@@ -48,16 +49,35 @@ const QuizSection: FC = () => {
         )
     }
 
-    console.log(questions[currentQuestion])
+    const changeAnswearLabels = (indexesToHide: number[]): void => {
+        setAnswearLabels(
+            answearLabels.filter((_, index) => !indexesToHide.includes(index))
+        )
+    }
+
+    console.log(questions[currentQuestion], answearLabels)
 
     return (
         <Wrapper>
-            <div>
+            <div style={{ width: "100%", height: "100%" }}>
                 {
-                phoneState.state=="USED" ?
-                    <PhoneWidget correctAnswearIndex={correctAnswearIndex} />
-                    :
-                    null
+                    phoneState.state === "USED" ?
+                        <PhoneWidget
+                            correctAnswearIndex={correctAnswearIndex}
+                            currentAnswearLabels={answearLabels}
+                        />
+                        :
+                        null
+                }
+                {
+                    peopleState.state === "USED" ?
+                        <AudienceWidget
+                            correctAnswearIndex={correctAnswearIndex}
+                            difficulty={questions[currentQuestion].difficulty}
+                            answearLabels={answearLabels}
+                        />
+                        :
+                        null
                 }
             </div>
             <Quiz
@@ -65,6 +85,7 @@ const QuizSection: FC = () => {
                 questionText={questions[currentQuestion].question}
                 currentQuestion={currentQuestion}
                 correctAnswearIndex={correctAnswearIndex}
+                changeAnswearLabels={changeAnswearLabels}
             />
             <Modal isOpen={isOpen}>
                 <GameOver

@@ -2,29 +2,32 @@ import { FC, useEffect, useMemo, useState } from "react"
 import { Wrapper, FriendIcon } from "components/PhoneWidget/PhoneWidget.styles"
 import { faUserTie } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useFreeze } from "hooks/useFreeze"
 
 const answearLabels: string[] = ["A", "B", "C", "D"]
 
 type Tprops = {
     correctAnswearIndex: number
+    currentAnswearLabels: string[]
 }
 
-const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex }) => {
+const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex, currentAnswearLabels }) => {
     const [visibleMessage, setVisibleMessage] = useState<string>("")
-    const [finished, setFinished] = useState<boolean>(false)
     const [myInterval, setMyInterval] = useState<any>(0)
     const [start, setStart] = useState<boolean>(false)
+    const { toggleFreeze } = useFreeze();
 
     const messages: string[] = useMemo(() => [
         "Fortunately I know this one. It's definitely " + answearLabels[correctAnswearIndex] + ".",
         "Oh yes, I've seen this. " + answearLabels[correctAnswearIndex] + " is correct.",
-        "I'm not sure about this. Personally I would choose " + answearLabels[Math.floor(Math.random() * answearLabels.length)] + ".",
-        "A blind guess: " + answearLabels[Math.floor(Math.random() * answearLabels.length)] + ".",
+        "I'm not sure about this. Personally I would choose " + currentAnswearLabels[Math.floor(Math.random() * currentAnswearLabels.length)] + ".",
+        "A blind guess: " + currentAnswearLabels[Math.floor(Math.random() * currentAnswearLabels.length)] + ".",
         "Sorry, I have no idea which one to choose. Good luck."
     ], []);
 
+
     const friendsAnswear = useMemo(() => {
-        if (correctAnswearIndex === -1 ) return messages[messages.length-1]
+        if (correctAnswearIndex === -1) return messages[messages.length - 1]
         return messages[Math.floor(Math.random() * messages.length)]
     }, [messages])
 
@@ -35,7 +38,7 @@ const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex }) => {
     useEffect(() => {
         if (!start) return
 
-        let index=0;
+        let index = 0;
         setMyInterval(setInterval(() => {
             let char = friendsAnswear.charAt(index) ? friendsAnswear.charAt(index) : " "
             console.log("Interval")
@@ -46,7 +49,14 @@ const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex }) => {
 
     useEffect(() => {
         setTimeout(() => setStart(true), 2000)
-    },[])
+
+        toggleFreeze(true, "LIFELINES")
+
+        setTimeout(() => {
+            toggleFreeze(false, "LIFELINES")
+        }, 8000)
+
+    }, [])
 
 
     return (

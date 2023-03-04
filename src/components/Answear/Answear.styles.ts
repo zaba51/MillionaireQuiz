@@ -8,7 +8,7 @@ type Tcolors = {
 }
 
 const colors:Tcolors = {
-    "IDLE": "'radial-gradient(closest-side at center,#0e34aa, #032495, #00000060)",
+    "IDLE": "'radial-gradient(closest-side at center,#0e34aa, #032495, #0a216b)",
     "CLICKED" : theme.colors.orange,
     "CORRECT" : "green"
 }
@@ -52,7 +52,7 @@ const flashAnimation = () => css`
 
 export const Wrapper = styled.div<{state?:string}>`
     padding:10px;
-    background: ${({theme, state}) => state === "CLICKED"? theme.colors.orange : 'radial-gradient(closest-side at center,#0e34aa, #032495, #00000060)'};
+    background: ${({theme, state}) => state === "CLICKED"? theme.colors.orange : 'radial-gradient(closest-side at center,#0e34aa, #032495, #0a216b)'};
     color: white;
     font-weight: 700;
     border: 2px solid lightgrey;

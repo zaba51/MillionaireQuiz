@@ -1,4 +1,4 @@
-import { ModalWrapper, Button } from 'components/Modal/Modal.styles';
+import { ModalWrapper } from 'components/Modal/Modal.styles';
 import { ReactNode, FC } from 'react';
 
 type Tprops = {
