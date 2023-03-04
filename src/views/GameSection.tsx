@@ -1,11 +1,12 @@
-import { Wrapper } from 'views/GameSection.styles'
+import { Wrapper, GameHeader, NavButton } from 'views/GameSection.styles'
 import ProgressBar from 'containers/ProgressBar/ProgressBar'
 import QuizSection from 'containers/QuizSection/QuizSection'
-import Lifelines from 'components/LifelinesSection/LifelinesSection'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { selectGameState } from 'features/game/gameSlice'
 import { useAppNavigate } from 'hooks/useAppNavigate'
+import { NavLink } from 'react-router-dom'
+import Lifelines from 'components/LifelinesSection/LifelinesSection'
 
 const GameSection = () => {
   const gameState = useAppSelector(selectGameState)
@@ -20,6 +21,11 @@ const GameSection = () => {
 
   return (
     <Wrapper>
+      <GameHeader>
+        <NavButton>
+          <NavLink to="/menu" style={{all:"unset", cursor:"pointer"}}>MENU</NavLink>
+        </NavButton>
+      </GameHeader>
       <Lifelines />
       <QuizSection />
       <ProgressBar />

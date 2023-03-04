@@ -16,7 +16,7 @@ const animation = () => css`
 export const Wrapper = styled.div<{triggerAnimate?:boolean}>`
     width:350px;
     height:100px;
-    background: radial-gradient(closest-side at center,#0e34aa,#032495,#00000060);
+    background: radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b);
     position: absolute;
     color:white;
     font-size: 15px;

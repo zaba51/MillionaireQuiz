@@ -16,9 +16,9 @@ export const ModalWrapper = styled(ReactModal)`
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
-  min-width: 700px;
+  width: 700px;
   min-height: 500px;
-  background:radial-gradient(closest-side at center,#0e34aa, #032495, #00000070);
+  background:radial-gradient(closest-side at center,#0e34aa, #032495, #0a216b);
   background-color: #0e34aa;
   border-radius: 15px;
   border: 4px solid lightgrey;
@@ -33,9 +33,8 @@ export const ModalWrapper = styled(ReactModal)`
   &:focus {
     outline: none;
   }
-`
 
-export const Button = styled.button`
-    background-color: red;
-    
+  @media screen and (max-width: 700px) {
+    width:100%;
+  }
 `

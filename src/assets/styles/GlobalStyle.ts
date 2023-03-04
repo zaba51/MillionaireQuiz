@@ -7,6 +7,7 @@ import {createGlobalStyle} from "styled-components"
 
     *, *::after, *::before {
         box-sizing: inherit;
+        /* outline: 1px solid red; */
     }
 
     body {
@@ -14,6 +15,7 @@ import {createGlobalStyle} from "styled-components"
         margin: 0;
         padding: 0;
         //overflow-y: hidden;
+        background: linear-gradient(#032495,#3d71ff);
     }
     
     a, button {
