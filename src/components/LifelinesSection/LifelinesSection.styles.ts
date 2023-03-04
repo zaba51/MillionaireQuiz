@@ -8,7 +8,12 @@ export const Wrapper = styled.div<{shouldFreeze:Boolean}>`
     justify-content: space-evenly;
     pointer-events: ${({shouldFreeze}) => shouldFreeze ? 'none' : 'auto'};
     width:100%;
-    height: 60px;
+    height: 100%;
+    border-left: 10px solid  cyan;
+
+    @media screen and (max-width:800px) {
+        border: unset;
+    }
 `
 
 export const Lifeline = styled.button<{state?:string}>`

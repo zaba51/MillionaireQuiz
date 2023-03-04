@@ -7,17 +7,26 @@ export const Wrapper = styled.div`
     max-height: 2000px;
     display: grid;
     grid-template-columns: 1fr 300px;
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 80px 1fr 1fr;
     max-width: 2500px;
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: 0.25fr 0.75fr;
+        grid-template-rows: 80px 1fr 1fr;
+    }
 `
 export const GameHeader = styled.header`
     width: 100%;
     height: 100%;
     padding: 5px;
-    grid-column: 1 / 2;
+    grid-column: 1;
     padding-left:5%;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 800px) {
+        justify-content: center;
+    }
 `
 
 const flashAnimation = keyframes`
@@ -54,5 +63,13 @@ export const NavButton = styled.div`
         transform: rotate(-45deg);
         background-color: #FFFFFFF9;
         animation: ${flashAnimation} 8s infinite backwards
+    }
+
+    @media screen and (max-width: 800px){
+        justify-self: center;
+        width:50px;
+        height: 35px;
+        font-size: 14px;
+        margin: 0;
     }
 `

@@ -43,7 +43,6 @@ const ProgressBar: FC = () => {
 
     return (
         <Wrapper>
-            <Lifelines />
             <PrizesWrapper>
                 {prizes.map(price => (
                     <Price key={price.id} {...price} isCurrent={price.id === currentQuestion + 1} />

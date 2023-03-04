@@ -36,9 +36,5 @@ export const ModalWrapper = styled(ReactModal)`
 
   @media screen and (max-width: 700px) {
     width:100%;
-
-    button {
-      width:100%;
-    }
   }
 `

@@ -7,6 +7,7 @@ import {createGlobalStyle} from "styled-components"
 
     *, *::after, *::before {
         box-sizing: inherit;
+        /* outline: 1px solid red; */
     }
 
     body {
