@@ -12,6 +12,7 @@ export const Wrapper = styled.div<{shouldFreeze?:boolean}>`
 
     @media screen and (max-width: 450px) {
         font-size:15px;
+        padding:2px;
     }
 
 `

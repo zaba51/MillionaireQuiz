@@ -81,6 +81,10 @@ export const Wrapper = styled.div<{state?:string}>`
         ${({state})=>state==="CORRECT" ? flashAnimation : null };
         z-index:2;
     }
+
+    @media screen and (max-width: 350px) {
+        padding: 10px;
+    }
 `
 
 export const Label = styled.span`

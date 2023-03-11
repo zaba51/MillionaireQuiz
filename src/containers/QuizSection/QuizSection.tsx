@@ -59,7 +59,7 @@ const QuizSection: FC = () => {
 
     return (
         <Wrapper>
-            {/* <div style={{ position:"absolute", top:"100px" }}>
+            <div style={{ position:"absolute", top:"100px" }}>
                 {
                     phoneState.state === "USED" ?
                         <PhoneWidget
@@ -79,7 +79,7 @@ const QuizSection: FC = () => {
                         :
                         null
                 }
-            </div> */}
+            </div>
             <Quiz
                 answears={answears}
                 questionText={questions[currentQuestion].question}
