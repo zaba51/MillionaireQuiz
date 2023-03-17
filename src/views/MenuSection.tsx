@@ -7,9 +7,9 @@ const MenuSection = () => {
 
     return (
         <Wrapper>
-                <TitleWrapper>
-                    <StyledTitle>WHO WANTS TO BE A MILLIONAIRE</StyledTitle>
-                </TitleWrapper>
+            <TitleWrapper>
+                <StyledTitle>WHO WANTS TO BE A MILLIONAIRE</StyledTitle>
+            </TitleWrapper>
             <MenuWrapper>
                 <StyledButton onClick={startNewGame}>PLAY</StyledButton>
                 <StyledButton onClick={navigateInfo}>INFO</StyledButton>

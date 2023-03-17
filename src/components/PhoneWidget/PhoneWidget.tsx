@@ -28,7 +28,9 @@ const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex, currentAnswearLabels }) 
 
     const friendsAnswear = useMemo(() => {
         if (correctAnswearIndex === -1) return messages[messages.length - 1]
+        
         return messages[Math.floor(Math.random() * messages.length)]
+
     }, [messages])
 
     useEffect(() => {

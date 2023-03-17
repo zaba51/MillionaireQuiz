@@ -7,6 +7,7 @@ export const Wrapper = styled(AnswearWrapper)`
     font-size: 24px;
     justify-content: center;
     cursor:auto;
+    min-height: 80%;
 
     @media screen and (max-width:600px){
         font-size:20px;

@@ -1,11 +1,22 @@
 import styled, { keyframes } from "styled-components";
 
-const fadeIn = () => keyframes`
+export const fadeIn = () => keyframes`
     from {
         opacity: 0;
+        transform: translateY(20%);
     }
     to {
         opacity: 1;
+        transform: translateY(0%);
+    }
+`
+
+const slideIn = () => keyframes`
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0%);
     }
 `
 
@@ -25,12 +36,10 @@ export const MenuWrapper = styled.div`
     min-height: 50%;
 
     button:nth-of-type(1) {
-        opacity: 0;
-        animation: ${fadeIn} 1.5s 2s forwards;
+        animation: ${fadeIn} 1s 1s backwards;
     }
     button:nth-of-type(2) {
-        opacity: 0;
-        animation: ${fadeIn} 1.5s 2.5s forwards;
+        animation: ${fadeIn} 1s 1.5s backwards;
     }
 `
 
@@ -53,6 +62,7 @@ export const StyledMedia = styled.div`
         transition: all 0.5s ;
         transform-origin: left;
     }
+    
 
     &:hover {
         transform: scale(1.1);
@@ -75,6 +85,8 @@ export const TitleWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(-100%);
+    animation: ${slideIn} 1s forwards;
 
     h1 {
         opacity: 0;

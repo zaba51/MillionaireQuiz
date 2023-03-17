@@ -51,7 +51,6 @@ const flashAnimation = () => css`
 `
 
 export const Wrapper = styled.div<{state?:string}>`
-    padding:10px;
     background: ${({theme, state}) => state === "CLICKED"? theme.colors.orange : 'radial-gradient(closest-side at center,#0e34aa, #032495, #0a216b)'};
     color: white;
     font-weight: 700;
@@ -76,7 +75,7 @@ export const Wrapper = styled.div<{state?:string}>`
         height: 100%;
         border-radius: inherit;
         vertical-align: middle;
-        transform: translateX(-20px);
+        left:0;
         opacity:0;
         ${({state})=>state==="CORRECT" ? flashAnimation : null };
         z-index:2;

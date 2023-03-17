@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slideBottom = () => keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+`
 
 export const Wrapper = styled.div`
     color: white;
@@ -13,5 +24,43 @@ export const Wrapper = styled.div`
         h2 {
             font-size: 20px;
         }
+    }
+
+
+    h2 {
+        opacity: 0;
+        animation: ${slideBottom} 1s 0.2s forwards;
+    }
+
+    p {
+        opacity: 0;
+        animation: ${slideBottom} 1.5s 0.4s forwards;
+    }
+    ul {
+        opacity: 0;
+        animation: ${slideBottom} 1.5s 0.8s forwards;
+    }
+
+
+`
+export const fadeIn = () => keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`
+
+export const MenuWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    min-height: 50%;
+
+    button {
+        opacity: 0;
+        animation: ${fadeIn} 2s 1s forwards;
     }
 `
