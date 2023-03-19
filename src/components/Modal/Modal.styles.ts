@@ -18,8 +18,7 @@ export const ModalWrapper = styled(ReactModal)`
   transform: translateX(-50%);
   width: 700px;
   min-height: 500px;
-  background:radial-gradient(closest-side at center,#0e34aa, #032495, #0a216b);
-  background-color: #0e34aa;
+  background:${({theme}) => theme.colors.navyGradient};
   border-radius: 15px;
   border: 4px solid lightgrey;
   box-shadow: 0px -5px 25px -10px rgba(0, 0, 0, 0.3);

@@ -26,7 +26,7 @@ const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex, currentAnswearLabels }) 
     ], []);
 
 
-    const friendsAnswear = useMemo(() => {
+    const friendsAnswear: string = useMemo(() => {
         if (correctAnswearIndex === -1) return messages[messages.length - 1]
         
         return messages[Math.floor(Math.random() * messages.length)]
@@ -40,9 +40,9 @@ const PhoneWidget: FC<Tprops> = ({ correctAnswearIndex, currentAnswearLabels }) 
     useEffect(() => {
         if (!start) return
 
-        let index = 0;
+        let index: number = 0;
         setMyInterval(setInterval(() => {
-            let char = friendsAnswear.charAt(index) ? friendsAnswear.charAt(index) : " "
+            let char: string = friendsAnswear.charAt(index) ? friendsAnswear.charAt(index) : " "
             console.log("Interval")
             setVisibleMessage(prev => prev += char);
             index++;

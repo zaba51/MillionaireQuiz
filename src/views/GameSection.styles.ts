@@ -48,10 +48,10 @@ export const NavButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid cyan;
-    color:cyan;
+    border: 2px solid ${({theme}) => theme.colors.cyan};
+    color:${({theme}) => theme.colors.cyan};
     font-weight: 700;
-    font-size:15px;
+    font-size:${({theme}) => theme.fontSize.m};
     position: relative;
     overflow: hidden;
 
@@ -69,7 +69,7 @@ export const NavButton = styled.div`
         justify-self: center;
         width:50px;
         height: 35px;
-        font-size: 14px;
+        font-size: ${({theme}) => theme.fontSize.s};
         margin: 0;
     }
 `

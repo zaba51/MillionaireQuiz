@@ -25,7 +25,7 @@ const AudienceWidget: FC<Tprops> = ({ correctAnswearIndex, difficulty, answearLa
         },8000)
     },[])
 
-    const newCorrectAnswearIndex = useMemo(() => {
+    const newCorrectAnswearIndex: number = useMemo(() => {
         return answearLabels.findIndex(label => {
             return label === allAnswearLabels[correctAnswearIndex]
         })
@@ -52,7 +52,7 @@ const AudienceWidget: FC<Tprops> = ({ correctAnswearIndex, difficulty, answearLa
                 ++answearPercentages[newCorrectAnswearIndex];
             }
             else {
-                let randomIndex = newCorrectAnswearIndex;
+                let randomIndex: number = newCorrectAnswearIndex;
 
                 while (randomIndex === newCorrectAnswearIndex) {
                     randomIndex = Math.floor(Math.random() * answearLabels.length)
@@ -64,27 +64,6 @@ const AudienceWidget: FC<Tprops> = ({ correctAnswearIndex, difficulty, answearLa
 
         return answearPercentages
     }, [])
-
-
-    // useEffect(() => {
-    //     if (visibleMessage.length === friendsAnswear.length) clearInterval(myInterval)
-    // }, [visibleMessage, friendsAnswear, myInterval])
-
-    // useEffect(() => {
-    //     if (!start) return
-
-    //     let index=0;
-    //     setMyInterval(setInterval(() => {
-    //         let char = friendsAnswear.charAt(index) ? friendsAnswear.charAt(index) : " "
-    //         console.log("Interval")
-    //         setVisibleMessage(prev => prev += char);
-    //         index++;
-    //     }, 50))
-    // }, [start, friendsAnswear])
-
-    // useEffect(() => {
-    //     setTimeout(() => setStart(true), 2000)
-    // },[])
 
     console.log(calculateAudienceAnswears, newCorrectAnswearIndex)
 

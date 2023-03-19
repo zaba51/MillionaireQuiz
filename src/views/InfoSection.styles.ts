@@ -13,7 +13,7 @@ const slideBottom = () => keyframes`
 
 export const Wrapper = styled.div`
     color: white;
-    font-size: 20px;
+    font-size: ${({theme}) => theme.fontSize.l};
     line-height: 1.5;
     text-align: justify; 
     padding:20px;
@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
         font-size: 16px;
 
         h2 {
-            font-size: 20px;
+            font-size: ${({theme}) => theme.fontSize.l};
         }
     }
 

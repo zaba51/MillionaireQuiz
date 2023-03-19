@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import { StyledTitle, Wrapper, StyledButton, StyledLabel, StyledPrize } from 'components/GameOver/GameOver.styles'
-import { useAppNavigate } from 'hooks/useAppNavigate';
-import { useAppSelector } from 'store/hooks';
-import { selectGuaranteedWin } from 'features/game/gameSlice'
+import { StyledTitle, Wrapper, StyledLabel, StyledPrize } from 'components/GameOver/GameOver.styles'
+import { StyledButton } from 'components/Button/Button.styles';
 import { currency } from 'global';
 
 type TGameOver = {

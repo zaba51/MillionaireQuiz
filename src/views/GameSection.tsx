@@ -1,14 +1,14 @@
 import { Wrapper, GameHeader, NavButton } from 'views/GameSection.styles'
 import ProgressBar from 'containers/ProgressBar/ProgressBar'
 import QuizSection from 'containers/QuizSection/QuizSection'
-import { useEffect } from 'react'
+import { useEffect, FC } from 'react'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { selectGameState } from 'features/game/gameSlice'
 import { useAppNavigate } from 'hooks/useAppNavigate'
 import { NavLink } from 'react-router-dom'
 import Lifelines from 'components/LifelinesSection/LifelinesSection'
 
-const GameSection = () => {
+const GameSection: FC = () => {
   const gameState = useAppSelector(selectGameState)
   const dispatch = useAppDispatch()
   const {startNewGame} = useAppNavigate()

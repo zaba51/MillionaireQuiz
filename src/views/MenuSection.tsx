@@ -1,8 +1,10 @@
-import { StyledButton, StyledTitle, } from 'components/GameOver/GameOver.styles'
+import { StyledTitle, } from 'components/GameOver/GameOver.styles'
 import { MenuWrapper, Wrapper, StyledMedia, TitleWrapper } from './MenuSection.styles'
 import { useAppNavigate } from 'hooks/useAppNavigate'
+import { FC } from 'react';
+import { StyledButton } from 'components/Button/Button.styles';
 
-const MenuSection = () => {
+const MenuSection: FC = () => {
     const { startNewGame, navigateInfo } = useAppNavigate();
 
     return (
@@ -14,14 +16,6 @@ const MenuSection = () => {
                 <StyledButton onClick={startNewGame}>PLAY</StyledButton>
                 <StyledButton onClick={navigateInfo}>INFO</StyledButton>
             </MenuWrapper>
-            {/* <footer style={{
-                background: "radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b)",
-                width:"100%",
-                display:"flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "20%"
-             }}> */}
             <StyledMedia>
                 <a
                     href="https://github.com/zaba51/MillionareQuiz"
@@ -30,7 +24,6 @@ const MenuSection = () => {
                     Visit the GitHub page
                 </a>
             </StyledMedia>
-            {/* </footer> */}
         </Wrapper>
     )
 }

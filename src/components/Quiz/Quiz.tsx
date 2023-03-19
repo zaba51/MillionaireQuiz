@@ -17,7 +17,7 @@ type TinitialButtonState = {
     state: "IDLE" | "CLICKED" | "CORRECT" | "HIDDEN"
 }
 
-const initialButtonsState = [
+const initialButtonsState: TinitialButtonState[] = [
     {
         id: 0,
         label: "A",
@@ -50,13 +50,9 @@ type Tprops = {
 
 const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswearIndex, changeAnswearLabels}) => {
     const dispatch = useAppDispatch()
-    const [buttons, setButtons] = useState(initialButtonsState)
+    const [buttons, setButtons] = useState<TinitialButtonState[]>(initialButtonsState)
     const { shouldFreeze, toggleFreeze } = useFreeze();
     const [fiftyState, phoneState, peopleState] = useAppSelector(state => state.lifelines)
-
-    // useEffect(() => {
-    //     if (!questions[1]) dispatch(fetchQuestionsThunk("https://opentdb.com/api.php?amount=12&type=multiple"))
-    // }, [])
 
     useEffect(() => {
         setButtons(initialButtonsState)
@@ -82,8 +78,8 @@ const Quiz: FC<Tprops> = ({questionText, answears, currentQuestion, correctAnswe
     }
 
     const toggleButton = (index: number, state: string) => {
-        setButtons(prevState => {
-            return prevState.map(button => {
+        setButtons((prevState: any) => {
+            return prevState.map((button: TinitialButtonState) => {
                 if (button.id === index) {
                     return {
                         ...button,

@@ -16,17 +16,17 @@ const animation = () => css`
 export const Wrapper = styled.div<{triggerAnimate?:boolean}>`
     width:350px;
     height:100px;
-    background: radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b);
+    background: ${({theme}) => theme.colors.navyGradient};
     position: absolute;
     color:white;
-    font-size: 15px;
+    font-size: ${({theme}) => theme.fontSize.m};
     padding:15px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     border-radius: 40px;
-    border: 2px solid cyan;
+    border: 2px solid ${({theme}) => theme.colors.cyan};
     ${animation}
 `
 
@@ -34,12 +34,12 @@ export const FriendIcon = styled.div`
   min-width:50px;
   min-height: 50px;
   border-radius:50%;
-  background-color: cyan;
+  background-color: ${({theme}) => theme.colors.cyan};
   color:#0e34aa;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: ${({theme}) => theme.fontSize.xxl};
   align-self: center;
   margin-right: 15px;
 `

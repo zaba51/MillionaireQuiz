@@ -1,9 +1,8 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { Wrapper, PrizesWrapper } from 'containers/ProgressBar/ProgressBar.styles'
 import Price from 'components/Price/Price'
 import { useAppSelector } from "store/hooks"
 import { selectCurrentQuestion } from "features/currentQuestion/QuizSlice"
-import Lifelines from "components/LifelinesSection/LifelinesSection"
 
 export type Tprice = {
     id: number
@@ -24,27 +23,14 @@ export const prizes: Tprice[] = [
     { id: 2, value: '1.000' },
     { id: 1, value: '500' }
 ]
-// const prizes = [
-//     '$500',
-//     '$1.000',
-//     '$2.000',
-//     '$4.000',
-//     '$8.000',
-//     '$16.000',
-//     '$32.000',
-//     '$64.000',
-//     '$125.000',
-//     '$250.000',
-//     '$500.000',
-//     '$1 MILLION',
-//  ]
+
 const ProgressBar: FC = () => {
     const currentQuestion = useAppSelector(selectCurrentQuestion)
 
     return (
-        <Wrapper>
+        <Wrapper>   
             <PrizesWrapper>
-                {prizes.map(price => (
+                {prizes.map( (price:Tprice) => (
                     <Price key={price.id} {...price} isCurrent={price.id === currentQuestion + 1} />
                 ))}
             </PrizesWrapper>

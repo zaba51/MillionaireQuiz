@@ -1,10 +1,11 @@
-import { StyledButton } from "components/GameOver/GameOver.styles"
+import { StyledButton } from "components/Button/Button.styles"
 import { useAppNavigate } from "hooks/useAppNavigate"
 import { NavLink } from "react-router-dom"
 import { Wrapper as MenuSectionWrapper } from "./MenuSection.styles"
 import { Wrapper, MenuWrapper } from "./InfoSection.styles"
+import { FC } from "react"
 
-const InfoSection = () => {
+const InfoSection: FC = () => {
     const { navigateMenu } = useAppNavigate()
 
     return (

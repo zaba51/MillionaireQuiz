@@ -1,5 +1,4 @@
 import styled, {css} from "styled-components";
-import { Wrapper as ProgressBarWrapper } from "containers/ProgressBar/ProgressBar.styles";
 
 export const Wrapper = styled.div<{shouldFreeze:Boolean}>`
     display: flex;
@@ -20,8 +19,8 @@ export const Lifeline = styled.button<{state?:string}>`
     width:50px;
     height:35px;
     border-radius: 50%;
-    border: 2px solid cyan;
-    background: radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b);
+    border: 2px solid ${({theme}) => theme.colors.cyan};
+    background: ${({theme}) => theme.colors.navyGradient};
     color: white;
     display: flex;
     align-items: center;
@@ -29,10 +28,10 @@ export const Lifeline = styled.button<{state?:string}>`
     font-weight: bold;
     cursor: pointer;
     position:relative;
-    font-size:25px;
+    font-size:${({theme}) => theme.fontSize.xl};
     
     span {
-        font-size:16px
+        font-size:16px;
     }
 
     ${({state}) => state === "USED" && css`
@@ -43,7 +42,7 @@ export const Lifeline = styled.button<{state?:string}>`
             width:105%;
             height:5px;
             transform: rotate(35deg);
-            background-color: red;
+            background-color: ${({theme}) => theme.colors.red};
             border: 1px solid black
         }
         &::after {

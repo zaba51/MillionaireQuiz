@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-export const fadeIn = () => keyframes`
+export const fadeInWithOpacity = () => keyframes`
     from {
         opacity: 0;
         transform: translateY(20%);
@@ -36,10 +36,10 @@ export const MenuWrapper = styled.div`
     min-height: 50%;
 
     button:nth-of-type(1) {
-        animation: ${fadeIn} 1s 1s backwards;
+        animation: ${fadeInWithOpacity} 1s 1s backwards;
     }
     button:nth-of-type(2) {
-        animation: ${fadeIn} 1s 1.5s backwards;
+        animation: ${fadeInWithOpacity} 1s 1.5s backwards;
     }
 `
 
@@ -48,7 +48,7 @@ export const StyledMedia = styled.div`
     cursor: pointer;
     justify-self: end;
     margin-top:50px;
-    font-size:20px;
+    font-size:${({theme}) => theme.fontSize.l};
     transition: all 0.5s ;
 
     &::before {
@@ -80,7 +80,7 @@ export const StyledMedia = styled.div`
 
 export const TitleWrapper = styled.div`
     width:100%;
-    background: radial-gradient(closest-side at center,#0e34aa,#032495,#0a216b);
+    background: ${({theme}) => theme.colors.navyGradient};
     height: 20%;
     display: flex;
     justify-content: center;
@@ -90,6 +90,6 @@ export const TitleWrapper = styled.div`
 
     h1 {
         opacity: 0;
-        animation: ${fadeIn} 1.5s 0.5s forwards;
+        animation: ${fadeInWithOpacity} 1.5s 0.5s forwards;
     }
 `

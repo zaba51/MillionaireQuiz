@@ -7,9 +7,8 @@ import { takeLifeline } from 'features/lifelines/lifelinesSlice'
 import { useFreeze } from 'hooks/useFreeze'
 
 const Lifelines: FC = () => {
-  const lifelineState = useAppSelector(state => state.lifelines);
-  const [fiftyState, phoneState, peopleState] = lifelineState
-  const { shouldLifelinesFreeze, toggleFreeze } = useFreeze();
+  const [fiftyState, phoneState, peopleState] = useAppSelector(state => state.lifelines);
+  const { shouldLifelinesFreeze } = useFreeze();
   const dispatch = useAppDispatch()
 
   const handleClick = (state:string) => {
