@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledButton = styled.button`
-    font-size: ${({theme}) => theme.fontSize.m};
+    font-size: ${({theme}) => theme.fontSize.l};
     margin-bottom: 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
