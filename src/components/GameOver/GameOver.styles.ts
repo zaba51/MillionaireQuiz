@@ -25,7 +25,7 @@ export const StyledLabel = styled.p`
   margin:0;
 `
 
-export const StyledPrize = styled.h3`
+export const StyledPrize = styled.h2`
   margin:20px;
   font-size:40px;
   color:${({theme}) => theme.colors.orange};

@@ -15,6 +15,7 @@ const App: FC = () => {
           <Route path="/game" element={<GameSection />} />
           <Route path="/info" element={<InfoSection />} />
           <Route path="/" element={<Navigate replace to="/menu" />} />
+          <Route path="*" element={<Navigate replace to="/menu" />} />
         </Routes>
       </Wrapper>
     </AppProviders>

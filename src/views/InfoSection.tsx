@@ -12,12 +12,11 @@ const InfoSection: FC = () => {
         <MenuSectionWrapper>
             <MenuWrapper>
                 <Wrapper>
-                    <h2>Welcome to my "Who wants to be a millionare" clone app!</h2>
+                    <h1>Welcome to my "Who wants to be a millionare" clone app!</h1>
                     <p>
-                        This app was written in <b>TypeScript React </b> and was made to enhance my Redux
-                        knowledge.
-                        <br />
+                        This app was written in <b>TypeScript React </b> and was made to learn more about Redux and TypeScript.
                         The existing state is not the final product, but it has all the basic functionalities you know from the show.
+                        <br />
                         <br />
                         Here's some of the features worth mentioning:
                     </p>

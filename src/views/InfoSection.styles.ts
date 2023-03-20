@@ -17,19 +17,21 @@ export const Wrapper = styled.div`
     line-height: 1.5;
     text-align: justify; 
     padding:20px;
+    max-width: 950px;
 
     @media screen and (max-width: 600px) {
         font-size: 16px;
 
-        h2 {
+        h1 {
             font-size: ${({theme}) => theme.fontSize.l};
         }
     }
-
-
-    h2 {
+    
+    h1 {
         opacity: 0;
+        font-size: ${({theme}) => theme.fontSize.xxl};
         animation: ${slideBottom} 1s 0.2s forwards;
+        text-align: center;
     }
 
     p {
